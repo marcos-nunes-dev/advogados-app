@@ -43,5 +43,9 @@
       "PACKAGE_NAME": "com.web4you.oiadvogado"
     }
   },
-  "dependent_plugins": {}
+  "dependent_plugins": {
+    "cordova-plugin-compat": {
+      "PACKAGE_NAME": "com.web4you.oiadvogado"
+    }
+  }
 }

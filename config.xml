@@ -113,5 +113,5 @@
         <variable name="FACEBOOK_ANDROID_SDK_VERSION" value="4.38.1" />
     </plugin>
     <engine name="ios" spec="^4.5.5" />
-    <engine name="android" spec="^7.1.4" />
+    <engine name="android" spec="~6.2.3" />
 </widget>

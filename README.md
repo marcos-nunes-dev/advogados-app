@@ -11,11 +11,14 @@ Esse projeto usa [Preact](https://preactjs.com/) e [Preact-CLI](https://github.c
 2. É necessário instalar o preact-cli globalmente rodando o código a seguir:
 
 ```npm install -g preact-cli```
-3. Instale as dependencias do projeto
+
+3. Instale as dependencias do projeto, caso contenha no repositorio clonado package-lock.json, delete o mesmo e a
+pasta node_modules
 
     ```
     cd pasta/do/projeto; npm install
     ```
+
 4. Inicie a aplicação
 
     ```
@@ -48,6 +51,15 @@ Essa pasta é a que deverá ser usada para atualizar o App e o PWA
 A versão do cordova-android usada é a 6.2.3 por uma incompatibilidade gerada na sua ultima versão publicada. O Comando seguinte é pra preparar o projeto em Android:
 
 ```cordova platform add android@6.2.3```
+
+Se estiver em ambiente windows e receber "Failed to fetch..." Adicione o seguinte path as variáveis de
+ambiente:
+
+```C:\Windows\System32```
+
+Erro Current working directory is not a Cordova based project, digite o comando
+
+```mkdir www```
 
 E preparar o projeto ios:
 
