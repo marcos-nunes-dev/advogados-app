@@ -48,6 +48,10 @@ Essa pasta é a que deverá ser usada para atualizar o App e o PWA
 
 ```npm install -g cordova```
 
+Se receber o Error Current working directory is not a Cordova based project, digite o comando
+
+```mkdir www```
+
 A versão do cordova-android usada é a 6.2.3 por uma incompatibilidade gerada na sua ultima versão publicada. O Comando seguinte é pra preparar o projeto em Android:
 
 ```cordova platform add android@6.2.3```
@@ -57,9 +61,6 @@ ambiente:
 
 ```C:\Windows\System32```
 
-Erro Current working directory is not a Cordova based project, digite o comando
-
-```mkdir www```
 
 E preparar o projeto ios:
 
