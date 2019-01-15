@@ -1,0 +1,18 @@
+{
+    "android": {
+        "debug": {
+            "keystore": "./oiadvogado-key.keystore",
+            "storePassword": "lcpdf1981",
+            "alias": "oiadvogado_alias",
+            "password" : "lcpdf1981",
+            "keystoreType": ""
+        },
+        "release": {
+            "keystore": "./oiadvogado-key.keystore",
+            "storePassword": "lcpdf1981",
+            "alias": "oiadvogado_alias",
+            "password" : "lcpdf1981",
+            "keystoreType": ""
+        }
+    }
+}

@@ -1,0 +1,57 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-plugin-geolocation": {
+      "GEOLOCATION_USAGE_DESCRIPTION": " ",
+      "PACKAGE_NAME": "com.web4you.oiadvogado"
+    },
+    "cordova-plugin-inappbrowser": {
+      "PACKAGE_NAME": "com.web4you.oiadvogado"
+    },
+    "cordova-plugin-ios-camera-permissions": {
+      "CAMERA_USAGE_DESCRIPTION": "your usage message",
+      "MICROPHONE_USAGE_DESCRIPTION": "your microphone usage message here",
+      "PHOTOLIBRARY_ADD_USAGE_DESCRIPTION": "your photo library usage message here",
+      "PHOTOLIBRARY_USAGE_DESCRIPTION": "your photo library usage message here",
+      "PACKAGE_NAME": "com.web4you.oiadvogado"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "com.web4you.oiadvogado"
+    },
+    "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": "com.web4you.oiadvogado"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "com.web4you.oiadvogado"
+    },
+    "onesignal-cordova-plugin": {
+      "PACKAGE_NAME": "com.web4you.oiadvogado"
+    },
+    "cordova-fabric-plugin": {
+      "FABRIC_API_KEY": "8cfe5b40b14bd051d1518b4b7eadf531514c787b",
+      "FABRIC_API_SECRET": "226cab2dad0e6e0e673579c43156de2c80f5a148bf9657787e059d34d83d0941",
+      "PACKAGE_NAME": "com.web4you.oiadvogado"
+    },
+    "cordova-plugin-linkedin": {
+      "APP_ID": "6404103",
+      "PACKAGE_NAME": "com.web4you.oiadvogado"
+    },
+    "cordova-plugin-facebook4": {
+      "APP_ID": "272441236745622",
+      "APP_NAME": "Oi Advogado",
+      "FACEBOOK_ANDROID_SDK_VERSION": "4.38.1",
+      "PACKAGE_NAME": "com.web4you.oiadvogado"
+    }
+  },
+  "dependent_plugins": {
+    "cordova-plugin-compat": {
+      "PACKAGE_NAME": "com.web4you.oiadvogado"
+    }
+  }
+}

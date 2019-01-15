@@ -1,0 +1,43 @@
+{
+  "parser": "babel-eslint",
+  "extends": "airbnb",
+  "plugins": ["react", "jsx-a11y", "import"],
+  "rules": {
+    "arrow-parens": "off",
+    "global-require": "off",
+    "no-undef": 0,
+    "no-underscore-dangle": 0,
+    "no-restricted-globals": 0,
+    "import/extensions": "off",
+    "import/first": "off",
+    "import/imports-first": "off",
+    "import/no-unresolved": "off",
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/jsx-no-bind": [
+      2,
+      { "ignoreRefs": true, "allowArrowFunctions": true }
+    ],
+    "react/jsx-no-duplicate-props": 2,
+    "react/self-closing-comp": 2,
+    "react/prefer-es6-class": 2,
+    "react/no-string-refs": 2,
+    "react/require-render-return": 2,
+    "react/no-find-dom-node": 2,
+    "react/no-is-mounted": 2,
+    "react/jsx-no-undef": 0,
+    "react/jsx-uses-react": 2,
+    "react/react-in-jsx-scope": 0,
+    "react/no-access-state-in-setstate": "off",
+    "react/prop-types": 0,
+    "react/destructuring-assignment": "off"
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".json", ".android.js", ".ios.js", ""]
+      }
+    },
+    "import/extensions": [".js", ".jsx"],
+    "no-extra-parens": ["error", "functions"]
+  }
+}

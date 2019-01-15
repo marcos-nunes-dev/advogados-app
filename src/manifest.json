@@ -1,0 +1,9 @@
+{
+  "name": "Oi Advogados",
+  "short_name": "Oi Advogados",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#fff",
+  "theme_color": "#fff"
+}

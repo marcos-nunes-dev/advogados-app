@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="22px" height="19px" viewBox="0 0 22 19" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>chat</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="contatos" transform="translate(-33.000000, -15.000000)" fill-rule="nonzero" fill="#6A8DD6">
+            <path d="M38.7071669,34 C38.6555032,34 38.6038396,33.9893125 38.5544386,33.9663542 C38.4179259,33.902625 38.33006,33.7609167 38.33006,33.6041667 L38.33006,30.0416667 L34.5589916,30.0416667 C33.7270939,30.0416667 33.0505642,29.3315417 33.0505642,28.4583333 L33.0505642,16.5833333 C33.0505642,15.710125 33.7270939,15 34.5589916,15 L52.6601201,15 C53.4920178,15 54.1685475,15.710125 54.1685475,16.5833333 L54.1685475,28.4583333 C54.1685475,29.3315417 53.4920178,30.0416667 52.6601201,30.0416667 L43.0012825,30.0416667 L38.9609598,33.8970833 C38.8900637,33.9647708 38.799181,34 38.7071669,34 Z" id="chat"></path>
+        </g>
+    </g>
+</svg>

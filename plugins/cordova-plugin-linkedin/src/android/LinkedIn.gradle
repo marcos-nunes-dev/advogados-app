@@ -1,0 +1,4 @@
+dependencies {
+  compile 'com.mcxiaoke.volley:library:1.0.+'
+  compile files('src/main/libs/linkedin.jar')
+}

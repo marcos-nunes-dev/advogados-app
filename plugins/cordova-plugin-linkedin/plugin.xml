@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="cordova-plugin-linkedin" version="1.2.1" xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <name>LinkedIn</name>
+
+    <js-module name="LinkedIn" src="www/LinkedIn.js">
+        <clobbers target="cordova.plugins.LinkedIn"/>
+    </js-module>
+
+    <platform name="android">
+        <config-file parent="/*" target="res/xml/config.xml">
+            <feature name="LinkedIn">
+                <param name="android-package" value="com.zyramedia.cordova.linkedin.LinkedIn"/>
+            </feature>
+        </config-file>
+        <config-file parent="/*" target="AndroidManifest.xml"/>
+        <source-file src="src/android/LinkedIn.java" target-dir="src/com/zyramedia/cordova/linkedin"/>
+        <resource-file src="src/android/linkedin.jar" target="libs/linkedin.jar" />
+        <framework src="src/android/LinkedIn.gradle" custom="true" type="gradleReference" />
+    </platform>
+
+    <platform name="ios">
+        <preference name="APP_ID" default="" />
+
+        <config-file parent="/*" target="config.xml">
+            <feature name="LinkedIn">
+                <param name="ios-package" value="LinkedIn"/>
+            </feature>
+        </config-file>
+
+        <config-file target="*-Info.plist" parent="LIAppId">
+            <string>$APP_ID</string>
+        </config-file>
+
+        <config-file target="*-Info.plist" parent="CFBundleURLTypes">
+            <array>
+                <dict>
+                    <key>CFBundleURLSchemes</key>
+                    <array>
+                        <string>li$APP_ID</string>
+                    </array>
+                </dict>
+            </array>
+        </config-file>
+
+        <config-file target="*-Info.plist" parent="LSApplicationQueriesSchemes">
+            <array>
+                <string>linkedin</string>
+                <string>linkedin-sdk2</string>
+                <string>linkedin-sdk</string>
+            </array>
+        </config-file>
+
+        <config-file target="*-Info.plist" parent="NSAppTransportSecurity">
+            <key>NSExceptionDomains</key>
+            <dict>
+                <key>linkedin.com</key>
+                <dict>
+                    <key>NSExceptionAllowsInsecureHTTPLoads</key>
+                    <true/>
+                    <key>NSIncludesSubdomains</key>
+                    <true/>
+                    <key>NSExceptionRequiresForwardSecrecy</key>
+                    <false/>
+                </dict>
+            </dict>
+        </config-file>
+
+        <header-file src="src/ios/LinkedIn.h"/>
+        <source-file src="src/ios/LinkedIn.m"/>
+
+        <header-file src="src/ios/AppDelegate+LinkedIn.h"/>
+        <source-file src="src/ios/AppDelegate+LinkedIn.m"/>
+
+        <framework src="src/ios/linkedin-sdk.framework" custom="true" />
+
+    </platform>
+
+</plugin>

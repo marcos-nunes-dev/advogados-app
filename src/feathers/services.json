@@ -1,0 +1,19 @@
+{
+  "app/users": "users",
+  "app/search": "searchLawyers",
+  "app/lawyers": "lawyers",
+  "app/law-areas": "lawAreas",
+  "app/user-profile": "userProfile",
+  "app/lawyer-profile": "lawyerProfile",
+  "app/videos": "videos",
+  "app/plans": "plans",
+  "app/articles": "articles",
+  "cities": "cities",
+  "common/upload": "upload",
+  "app/requests": "requests",
+  "app/services": "lawyerServices",
+  "app/chat": "chat",
+  "authManagement": "authManagement",
+  "changeCreditCard": "changeCreditCard",
+  "app/tutorial": "tutorial"
+}
