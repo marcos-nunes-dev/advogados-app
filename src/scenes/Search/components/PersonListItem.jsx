@@ -67,6 +67,8 @@ const OAB = styled.h1`
   margin: 0;
   color: ${v.mc.grey._800};
   font-weight: 200;
+  display: flex;
+  align-items: center;
 `;
 
 /**
@@ -193,6 +195,26 @@ const Stars = ({number}) => (
   </div>
 )
 
+
+/**
+|--------------------------------------------------
+| Verificação OAB
+|--------------------------------------------------
+*/
+
+const OABVerification = ({ status }) => (
+  <i
+    class="material-icons"
+    style={{
+      fontSize: 12,
+      marginLeft: 5,
+      color: `${status ? "#4ae06b" : "#d4d4d4"}`
+    }}
+  >
+    check_circle
+  </i>
+);
+
 /**
 |--------------------------------------------------
 | MenuListItem
@@ -203,6 +225,8 @@ const I = ({name}) => (
   <i class="material-icons" style={{fontSize: 12, marginRight: 2}} >{name}</i>
 )
 
+
+
 const MenuListItem = ({ image, title, description, price, stars, distance, articles, videos, reviews, oab, ...props}) => (
   <ItemWrapper>
     <Item {...props} >
@@ -210,7 +234,7 @@ const MenuListItem = ({ image, title, description, price, stars, distance, artic
         <Image path={image} />
       </Thumbnail>
       <Infos>
-        <OAB>OAB {`${oab.number}/${oab.state}`}</OAB>
+        <OAB>OAB {`${oab.number}/${oab.state}`} <OABVerification status={true} /> </OAB>
         <Name> {title} </Name>
         <Description> {description} </Description>
         <Price> {price} </Price>
@@ -223,16 +247,16 @@ const MenuListItem = ({ image, title, description, price, stars, distance, artic
         </Box>
         <FooterItem> {reviews} avaliações </FooterItem> */}
         <FooterItem flex align="center">
-          <I name="book" />
+          <I name="book" color="#757575" />
           {articles} artigos
         </FooterItem>
         <FooterItem flex align="center">
-          <I name="video_library"/>
+          <I name="video_library" color="#757575"/>
           {videos} vídeos
         </FooterItem>
         <If condition={distance}>
           <FooterItem flex align="center">
-            <I name="location_on"/>
+            <I name="location_on" color="#757575"/>
             {distance}
           </FooterItem>
         </If>
