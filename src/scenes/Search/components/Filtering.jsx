@@ -1,4 +1,5 @@
 import { h, Component } from "preact";
+import Select from "react-select";
 import styled from "styled-components";
 import { Flex, Box } from "reflexbox";
 import { Field, reduxForm, submit } from "redux-form";
@@ -15,7 +16,7 @@ import { Dropdown as MDDropdown } from "../../../toolbox/components";
 import LocalDB from "../../../feathers/local-database";
 import actions from "../redux/actions";
 import Input from "../../Wizard/components/Input";
-import { Select } from "antd";
+
 
 const { Cities, LawAreas } = LocalDB;
 const Option = Select.Option;
@@ -142,7 +143,7 @@ class AreaForm extends Component {
   state = {
     lawArea: "",
     areas: [],
-    loaded: false
+    loaded: false,
   };
 
   handleAreaChange = value => {
@@ -219,6 +220,12 @@ const getAddressCoords = (addressObject, number) => {
   });
 };
 
+const handleState = () => {
+  this.setState({
+    teste: true
+  })
+}
+
 const Form = ({
   cities,
   initialValues,
@@ -227,8 +234,6 @@ const Form = ({
   onAddressUpdate
 }) => (
   <div style={{ height: window.innerHeight - 100 }}>
-    {console.log("getStates", getStates(cities))}
-
     <Formik
       initialValues={{
         state: "",
@@ -236,75 +241,64 @@ const Form = ({
       }}
       onSubmit={(values, actions) => {
         const location = {
-          state: values.state,
-          city: values.city,
+          state: values.state.value,
+          city: values.city.value,
           coords: [0, 0]
         };
         setLocation(location);
         closeDialog();
       }}
-      render={({ values, handleSubmit, setFieldValue, submitForm }) => (
+      render={({
+        values,
+        handleSubmit,
+        setFieldValue,
+        submitForm,
+        setSubmitting
+      }) => (
         <form onSubmit={handleSubmit}>
-          {console.log(getStates(cities))}
-          {/* <MDDropdown
-            tabIndex="0"
-            toggle={false}
-            name="state"
-            value={values.state}
-            label="Estado"
-            auto
-            source={getStates(cities)}
-            onChange={
-              (value) => {
-                setFieldValue('state', value);
-
-                setTimeout(() => {
-                  // alert(1);
-                  document.getElementById('teste-mara').click();
-                }, 100);
-              }
-              }
-          /> */}
-          
           <Select
-            showSearch
-            placeholder="Selecione seu Estado"
-            optionFilterProp="children"
-            filterOption={(input, option) =>
-              option.props.children
-                .toLowerCase()
-                .indexOf(input.toLowerCase()) >= 0
-            }
-          >
-            {getStates(cities).map(citie => (
-              <Option value={citie.value} key={citie.value}>
-                {citie.value}, {citie.label}
-              </Option>
-            ))}
-          </Select>
-
-          <MDDropdown
-            name="city"
-            disabled={!values.state}
-            label="Cidade"
-            value={values.city}
-            auto
-            source={getCities(values.state, cities)}
+            value={values.state}
+            isSearchable={true}
+            className="SelectInput"
+            placeholder="Selecione seu Estado..."
+            options={getStates(cities)}
             onChange={value => {
-              setFieldValue("city", value);
-
-              setTimeout(() => {
-                // alert(1);
-                document.getElementById("teste-mara").click();
-              }, 100);
+              setFieldValue("state", value);
+              setSubmitting();
             }}
           />
+
+          <Select
+            value={values.city}
+            isSearchable={true}
+            className="SelectInput"
+            placeholder="Selecione sua Cidade..."
+            options={getCities(values.state.value, cities)}
+            onChange={value => {
+              setFieldValue("city", value);
+              setSubmitting();
+            }}
+          />
+
           <div onClick={submitForm}>
             <FooterButton>
               <Title>ALTERAR</Title>
             </FooterButton>
           </div>
           <a href="javascript:void(0)" id="teste-mara" />
+
+          <style jsx>{`
+            .SelectInput {
+              margin-bottom: 15px;
+            }
+            .SelectInput .css-vj8t7z {
+              min-height: 50px !important;
+              background-color: hsl(0, 0%, 90%) !important;
+            }
+            .SelectInput .css-d8oujb{
+              display: none;
+            }
+          `}</style>
         </form>
       )}
     />
