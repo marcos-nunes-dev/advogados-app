@@ -1,23 +1,24 @@
-import { h, Component } from 'preact';
-import styled from 'styled-components';
-import { Flex, Box } from 'reflexbox';
-import { Field, reduxForm, submit } from 'redux-form';
-import get from 'lodash/get';
-import groupBy from 'lodash/groupBy';
-import { connect } from 'preact-redux';
-import ViaCep from 'react-via-cep';
-import axios from 'axios';
-import { Formik } from 'formik';
-import v from '../../../variables';
-import { Dialog } from '../../../toolbox/components';
-import { Dropdown } from '../../../components';
-import { Dropdown as MDDropdown } from '../../../toolbox/components';
-import LocalDB from '../../../feathers/local-database';
-import actions from '../redux/actions';
-import Input from '../../Wizard/components/Input';
-
+import { h, Component } from "preact";
+import styled from "styled-components";
+import { Flex, Box } from "reflexbox";
+import { Field, reduxForm, submit } from "redux-form";
+import get from "lodash/get";
+import groupBy from "lodash/groupBy";
+import { connect } from "preact-redux";
+import ViaCep from "react-via-cep";
+import axios from "axios";
+import { Formik } from "formik";
+import v from "../../../variables";
+import { Dialog } from "../../../toolbox/components";
+import { Dropdown } from "../../../components";
+import { Dropdown as MDDropdown } from "../../../toolbox/components";
+import LocalDB from "../../../feathers/local-database";
+import actions from "../redux/actions";
+import Input from "../../Wizard/components/Input";
+import { Select } from "antd";
 
 const { Cities, LawAreas } = LocalDB;
+const Option = Select.Option;
 
 /**
 |--------------------------------------------------
@@ -26,7 +27,7 @@ const { Cities, LawAreas } = LocalDB;
 */
 
 const FooterButton = styled.div`
-  background-color: #7E57C2;
+  background-color: #7e57c2;
   text-align: center;
   height: 55px;
   width: 100%;
@@ -35,7 +36,7 @@ const FooterButton = styled.div`
   color: white;
   line-height: 55px;
   cursor: pointer;
-  left:0;
+  left: 0;
 `;
 
 /**
@@ -48,12 +49,11 @@ const Title = styled.span`
   font-size: 13px;
 `;
 
-
 const mapStateToProps = ({ wizard, forms }) => ({
-  initialValues: get(forms, 'locationForm.values'),
+  initialValues: get(forms, "locationForm.values"),
   cities: Cities.find(),
-  lawAreas: LawAreas.find({ $order: 'name(asc)' }),
-  getLawArea: LawAreas.get(),
+  lawAreas: LawAreas.find({ $order: "name(asc)" }),
+  getLawArea: LawAreas.get()
 });
 
 const mapDispatchToProps = {
@@ -62,8 +62,11 @@ const mapDispatchToProps = {
   setLoading: actions.setLoading
 };
 
-const container = (component) => connect(mapStateToProps, mapDispatchToProps)(component);
-
+const container = component =>
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(component);
 
 /**
 |--------------------------------------------------
@@ -108,26 +111,22 @@ const FilterItemWrapper = styled.div`
 */
 
 const I = ({ name }) => (
-  <i className="material-icons" style={{ fontSize: 15 }}>{name}</i>
+  <i className="material-icons" style={{ fontSize: 15 }}>
+    {name}
+  </i>
 );
-
 
 const FilterItem = ({ icon, label, ...props }) => (
   <FilterItemWrapper {...props}>
     <Flex justify="space-between" align="center">
       <Box>
-        {' '}
-        <I name={icon} />
-        {' '}
+        {" "}
+        <I name={icon} />{" "}
       </Box>
-      <Label>
-        {' '}
-        {label}
-      </Label>
+      <Label> {label}</Label>
       <Box>
-        {' '}
-        <I name="arrow_drop_down" />
-        {' '}
+        {" "}
+        <I name="arrow_drop_down" />{" "}
       </Box>
     </Flex>
   </FilterItemWrapper>
@@ -141,36 +140,37 @@ const FilterItem = ({ icon, label, ...props }) => (
 
 class AreaForm extends Component {
   state = {
-    lawArea: '',
+    lawArea: "",
     areas: [],
-    loaded: false,
+    loaded: false
   };
 
-  handleAreaChange = (value) => {
+  handleAreaChange = value => {
     this.setState({ lawArea: value });
   };
 
-  load = (lawAreas) => {
+  load = lawAreas => {
     if (!this.state.loaded) {
-      const areas = lawAreas.map(item => ({ label: item.name, value: item._id }));
+      const areas = lawAreas.map(item => ({
+        label: item.name,
+        value: item._id
+      }));
       this.setState({
         areas,
-        loaded: true,
+        loaded: true
       });
     }
   };
 
-  render({
-    closeDialog, lawAreas, setArea, getLawArea,
-  }) {
+  render({ closeDialog, lawAreas, setArea, getLawArea }) {
     return (
-      <form style={{ height: 345, overflowY: 'scroll' }}>
+      <form style={{ height: 345, overflowY: "scroll" }}>
         <If condition={lawAreas}>
           {this.load(lawAreas)}
 
           {this.state.areas.map(area => (
             <div
-              style={{ padding: '15px 0px', cursor: 'pointer' }}
+              style={{ padding: "15px 0px", cursor: "pointer" }}
               onClick={() => {
                 const _area = getLawArea(area.value);
                 setArea({ area: _area.name, id: _area._id });
@@ -181,8 +181,6 @@ class AreaForm extends Component {
             </div>
           ))}
         </If>
-
-
       </form>
     );
   }
@@ -203,7 +201,9 @@ const getAddressCoords = (addressObject, number) => {
   const address = `${logradouro} ${localidade} ${uf} ${number}`;
   return new Promise(resolve => {
     axios
-      .get(`https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=AIzaSyCmPKWxyysvnjzCJ5e9xE7H_8HNzWLtn4s`)
+      .get(
+        `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=AIzaSyCmPKWxyysvnjzCJ5e9xE7H_8HNzWLtn4s`
+      )
       .then(({ data }) => {
         console.log(data);
         if (data.results.length) {
@@ -220,35 +220,33 @@ const getAddressCoords = (addressObject, number) => {
 };
 
 const Form = ({
-  cities, initialValues, setLocation, closeDialog, onAddressUpdate,
+  cities,
+  initialValues,
+  setLocation,
+  closeDialog,
+  onAddressUpdate
 }) => (
   <div style={{ height: window.innerHeight - 100 }}>
-
-    {console.log('getStates', getStates(cities))}
+    {console.log("getStates", getStates(cities))}
 
     <Formik
       initialValues={{
-        state: '', city: '',
+        state: "",
+        city: ""
       }}
       onSubmit={(values, actions) => {
         const location = {
           state: values.state,
           city: values.city,
-          coords: [0, 0],
+          coords: [0, 0]
         };
         setLocation(location);
         closeDialog();
       }}
-      render={({
-        values,
-        handleSubmit,
-        setFieldValue,
-        submitForm,
-      }) => (
+      render={({ values, handleSubmit, setFieldValue, submitForm }) => (
         <form onSubmit={handleSubmit}>
-
-          {console.log(values)}
-          <MDDropdown
+          {console.log(getStates(cities))}
+          {/* <MDDropdown
             tabIndex="0"
             toggle={false}
             name="state"
@@ -266,7 +264,25 @@ const Form = ({
                 }, 100);
               }
               }
-          />
+          /> */}
+          
+          <Select
+            showSearch
+            placeholder="Selecione seu Estado"
+            optionFilterProp="children"
+            filterOption={(input, option) =>
+              option.props.children
+                .toLowerCase()
+                .indexOf(input.toLowerCase()) >= 0
+            }
+          >
+            {getStates(cities).map(citie => (
+              <Option value={citie.value} key={citie.value}>
+                {citie.value}, {citie.label}
+              </Option>
+            ))}
+          </Select>
+
           <MDDropdown
             name="city"
             disabled={!values.state}
@@ -274,17 +290,15 @@ const Form = ({
             value={values.city}
             auto
             source={getCities(values.state, cities)}
-            onChange={(value) => {
-              setFieldValue('city', value);
+            onChange={value => {
+              setFieldValue("city", value);
 
               setTimeout(() => {
                 // alert(1);
-                document.getElementById('teste-mara').click();
+                document.getElementById("teste-mara").click();
               }, 100);
-            }
-            }
+            }}
           />
-
           <div onClick={submitForm}>
             <FooterButton>
               <Title>ALTERAR</Title>
@@ -293,9 +307,7 @@ const Form = ({
           <a href="javascript:void(0)" id="teste-mara" />
         </form>
       )}
-
     />
-
 
     {/* <ViaCep cep={get(initialValues, 'cep')} onSuccess={onAddressUpdate} lazy>
       {({ data, loading, error, fetch }) => {
@@ -342,29 +354,28 @@ const Form = ({
         )
       }}
     </ViaCep> */}
-
-
   </div>
 );
 
-const getStates = (list) => list.map(({ nome, sigla }) => ({ label: nome, value: sigla }));
+const getStates = list =>
+  list.map(({ nome, sigla }) => ({ label: nome, value: sigla }));
 
 const getCities = (uf, list) => {
   if (!uf) return [];
-  return list.find(i => i.sigla === uf).cidades
-    .map(cityName => ({ label: cityName, value: cityName }));
+  return list
+    .find(i => i.sigla === uf)
+    .cidades.map(cityName => ({ label: cityName, value: cityName }));
 };
 
 const ReduxedForm = reduxForm({
-  form: 'locationForm',
+  form: "locationForm",
   destroyOnUnmount: false,
   enableReinitialize: true,
   pure: false,
-  updateUnregisteredFields: true,
+  updateUnregisteredFields: true
 })(Form);
 
 const ContainerForm = container(ReduxedForm);
-
 
 /**
 |--------------------------------------------------
@@ -375,22 +386,33 @@ const ContainerForm = container(ReduxedForm);
 class Filtering extends Component {
   state = {
     active: false,
-    areaDialog: false,
+    areaDialog: false
   };
 
   handleLocationToggle = () => {
     this.setState({ active: !this.state.active });
-  }
+  };
 
   handleAreaToggle = () => {
     this.setState({ areaDialog: !this.state.areaDialog });
-  }
+  };
 
   render({ filters, search }) {
     return (
       <FilteringWrapper>
-        <FilterItem icon="location_on" label={`${get(search, 'location.city', 'Todas as cidades')}, ${search.location.state}`} onClick={this.handleLocationToggle} />
-        <FilterItem icon="work" id="work-select" label={search.area.area} onClick={this.handleAreaToggle} />
+        <FilterItem
+          icon="location_on"
+          label={`${get(search, "location.city", "Todas as cidades")}, ${
+            search.location.state
+          }`}
+          onClick={this.handleLocationToggle}
+        />
+        <FilterItem
+          icon="work"
+          id="work-select"
+          label={search.area.area}
+          onClick={this.handleAreaToggle}
+        />
 
         <Dialog
           title="Alterar Cidade"
