@@ -234,7 +234,7 @@ const MenuListItem = ({ image, title, description, price, stars, distance, artic
         <Image path={image} />
       </Thumbnail>
       <Infos>
-        <OAB>OAB {`${oab.number}/${oab.state}`} <OABVerification status={true} /> </OAB>
+        <OAB>OAB {`${oab.number}/${oab.state}`} <OABVerification status={oab.verification} /> </OAB>
         <Name> {title} </Name>
         <Description> {description} </Description>
         <Price> {price} </Price>
