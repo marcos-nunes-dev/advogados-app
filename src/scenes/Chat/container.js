@@ -8,6 +8,23 @@ window.change = change;
 
 /**
 |--------------------------------------------------
+| Metas
+|--------------------------------------------------
+*/
+
+const metas = {
+  blockSendMessage: {
+    cantSend: {
+      text: "Você precisa ser Premium para enviar Mensagem",
+      closeTimeout: 5000
+    },
+    errorAlert: true,
+    showPreloader: true
+  }
+};
+
+/**
+|--------------------------------------------------
 | Props
 |--------------------------------------------------
 */
@@ -38,7 +55,9 @@ const mapDispatchToProps = {
   patch: services.chat.patch,
   getUser: services.userProfile.get,
   getChat: services.chat.find,
-  change,
+  getLawyer: services.lawyers.find,
+  erroMessage: metas.blockSendMessage,
+  change
 };
 
 export default component => connect(

@@ -1,21 +1,21 @@
-import { h, Component } from 'preact';
-import styled from 'styled-components';
-import { Flex, Box } from 'reflexbox';
-import { Field, reduxForm } from 'redux-form';
-import Dropzone from 'react-dropzone';
-import axios from 'axios';
-import Dialog from 'react-toolbox/lib/dialog';
-import isImageUrl from 'is-image-url';
-import FontIcon from 'react-toolbox/lib/font_icon';
-import ReactGA from 'react-ga';
-import { socketClient } from '../../feathers';
-import { Scene } from '../../components';
-import Nav from './components/Nav';
-import container from './container';
+import { h, Component } from "preact";
+import styled from "styled-components";
+import { Flex, Box } from "reflexbox";
+import { Field, reduxForm } from "redux-form";
+import Dropzone from "react-dropzone";
+import axios from "axios";
+import Dialog from "react-toolbox/lib/dialog";
+import isImageUrl from "is-image-url";
+import FontIcon from "react-toolbox/lib/font_icon";
+import ReactGA from "react-ga";
+import { socketClient } from "../../feathers";
+import { Scene } from "../../components";
+import Nav from "./components/Nav";
+import container from "./container";
 
 const scrollChatToBottom = () => {
   const h = window.innerHeight - 90;
-  const el = document.querySelector('.chat-content');
+  const el = document.querySelector(".chat-content");
   if (el) {
     const value = el.scrollHeight - h - el.scrollTop;
     if (value < 50 || el.scrollTop === 0) {
@@ -95,7 +95,7 @@ const FooterFieldWrapper = styled(Flex)`
 `;
 
 function clearChatInput() {
-  store.dispatch(change('chatForm', 'text', ''));
+  store.dispatch(change("chatForm", "text", ""));
 }
 
 window.clearChatInput = clearChatInput;
@@ -111,45 +111,45 @@ const SendIcon = styled.i`
 
 const style = {
   borderWidth: 2,
-  borderColor: 'black',
-  borderStyle: 'dashed',
+  borderColor: "black",
+  borderStyle: "dashed",
   borderRadius: 4,
   margin: 30,
   padding: 30,
   width: 200,
-  transition: 'all 0.5s',
+  transition: "all 0.5s"
 };
 
 const activeStyle = {
-  borderStyle: 'solid',
-  backgroundColor: '#eee',
-  borderRadius: 8,
+  borderStyle: "solid",
+  backgroundColor: "#eee",
+  borderRadius: 8
 };
 
 class FooterField extends Component {
   state = {
     files: [],
-    active: false,
+    active: false
   };
 
   componentDidMount() {
-    ReactGA.event({ category: 'Navigation', action: 'ContatoAdv_Mensagem' });
+    ReactGA.event({ category: "Navigation", action: "ContatoAdv_Mensagem" });
   }
 
   onDrop(files) {
     const formData = new FormData();
-    formData.append('uri', files[0]);
+    formData.append("uri", files[0]);
 
     axios({
-      method: 'post',
-      url: 'https://mysterious-oasis-88871.herokuapp.com/common/upload',
-      data: formData,
+      method: "post",
+      url: "https://mysterious-oasis-88871.herokuapp.com/common/upload",
+      data: formData
     })
       .then(response => {
         console.log(files[0]);
         Object.assign(files[0], { file: response.data.uri });
         this.setState({
-          files,
+          files
         });
         this.handleToggle();
       })
@@ -162,9 +162,7 @@ class FooterField extends Component {
     this.setState({ active: !this.state.active });
   };
 
-  render({
-    create, userId, formData, messages, change,
-  }) {
+  render({ create, userId, formData, messages, change, ableToSendMessage }) {
     let dropzoneRef;
     const { files } = this.state;
     return (
@@ -172,7 +170,7 @@ class FooterField extends Component {
         ref={node => {
           dropzoneRef = node;
         }}
-        style={{ border: 'none' }}
+        style={{ border: "none" }}
         disableClick
         multiple={false}
         onDrop={(accepted, rejected) => {
@@ -180,7 +178,7 @@ class FooterField extends Component {
         }}
       >
         <FooterFieldWrapper justify="space-between" align="center">
-          <Box style={{ width: '100%' }}>
+          <Box style={{ width: "100%" }}>
             <Field
               name="text"
               component={ChatFieldWrapper}
@@ -205,11 +203,14 @@ class FooterField extends Component {
               onClick={() => {
                 create({ userId, text: formData.text });
                 window.clearChatInput();
-                ReactGA.event({ category: 'Navigation', action: 'ContatoAdv_Mensagem_Enviada' });
+                ReactGA.event({
+                  category: "Navigation",
+                  action: "ContatoAdv_Mensagem_Enviada"
+                });
                 if (messages.length === 0) {
                   ReactGA.event({
-                    category: 'Navigation',
-                    action: 'ContatoAdv_Mensagem_InicioChat',
+                    category: "Navigation",
+                    action: "ContatoAdv_Mensagem_InicioChat"
                   });
                 }
               }}
@@ -228,22 +229,30 @@ class FooterField extends Component {
             {files.map((file, idx) => (
               <Flex pt={2} pb={2} pl={0} pr={0} mt={1}>
                 <Box w={[1 / 2]}>
-                  {file && isImageUrl(file.file) ? <img src={file.preview} width={100} /> : ''}
-                  {file && !isImageUrl(file.file) ? <FontIcon value="insert_drive_file" /> : ''}
+                  {file && isImageUrl(file.file) ? (
+                    <img src={file.preview} width={100} />
+                  ) : (
+                    ""
+                  )}
+                  {file && !isImageUrl(file.file) ? (
+                    <FontIcon value="insert_drive_file" />
+                  ) : (
+                    ""
+                  )}
                 </Box>
 
                 <Box w={[1 / 2]}>
-                  <Flex mb={1} style={{ fontSize: '.9em', fontWeight: '900' }}>
+                  <Flex mb={1} style={{ fontSize: ".9em", fontWeight: "900" }}>
                     {file.name}
                   </Flex>
-                  <Flex style={{ fontSize: '.7em', fontWeight: '300' }}>
+                  <Flex style={{ fontSize: ".7em", fontWeight: "300" }}>
                     {`${file.size} bytes.`}
                   </Flex>
                 </Box>
               </Flex>
             ))}
             <Flex>
-              <Box style={{ width: '100%' }}>
+              <Box style={{ width: "100%" }}>
                 <Field
                   name="text"
                   component={ChatFieldWrapper}
@@ -255,7 +264,11 @@ class FooterField extends Component {
                 <SendIcon
                   className="material-icons"
                   onClick={() => {
-                    create({ userId, text: formData.text, file: files[0].file });
+                    create({
+                      userId,
+                      text: formData.text,
+                      file: files[0].file
+                    });
                     window.clearChatInput();
                     this.handleToggle();
                   }}
@@ -272,8 +285,36 @@ class FooterField extends Component {
 }
 
 FooterField = reduxForm({
-  form: 'chatForm',
+  form: "chatForm"
 })(FooterField);
+
+/**
+|--------------------------------------------------
+| CantSendMessage
+|--------------------------------------------------
+*/
+
+class CantSendMessage extends Component {
+  render() {
+    return <div>
+        <div className="MainError">
+          Você precisa ser premium para enviar Mensagens
+        </div>
+        <style jsx global>{`
+          .MainError {
+            background: linear-gradient(to right, rgb(254, 83, 83) 0%, rgb(183, 78, 78) 100%);
+            width: 100%;
+            color: white;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }`}</style>
+      </div>;
+  }
+}
+
+CantSendMessage = CantSendMessage;
 
 /**
 |--------------------------------------------------
@@ -332,7 +373,7 @@ const Avatar = styled.img`
 `;
 
 const Message = ({ text, photo }) => (
-  <MessageWrapper style={{ width: '80%' }}>
+  <MessageWrapper style={{ width: "80%" }}>
     <Box>
       <Image src={photo} />
     </Box>
@@ -356,9 +397,9 @@ const MessageImage = ({ file, photo }) => (
 );
 
 const MessageFile = ({ file }) => (
-  <MessageWrapper style={{ flexDirection: 'row-reverse' }}>
+  <MessageWrapper style={{ flexDirection: "row-reverse" }}>
     <Box p={0}>
-      <Image style={{ display: 'none' }} />
+      <Image style={{ display: "none" }} />
     </Box>
     <Box p={0}>
       <MessageBoxFile>
@@ -376,32 +417,34 @@ const MessageFile = ({ file }) => (
 );
 
 const SelfMessage = ({ text }) => (
-  <MessageWrapper style={{ flexDirection: 'row-reverse', float: 'right', width: '80%' }}>
+  <MessageWrapper
+    style={{ flexDirection: "row-reverse", float: "right", width: "80%" }}
+  >
     {scrollChatToBottom()}
     <Box>
       <SelfMessageBox>{text}</SelfMessageBox>
     </Box>
     <Box>
-      <Image style={{ display: 'none' }} />
+      <Image style={{ display: "none" }} />
     </Box>
   </MessageWrapper>
 );
 
 const SelfMessageImage = ({ file }) => (
-  <MessageWrapper style={{ flexDirection: 'row-reverse' }}>
+  <MessageWrapper style={{ flexDirection: "row-reverse" }}>
     <Box>
       <SelfMessageBox>
         <img src={file} width="250" />
       </SelfMessageBox>
     </Box>
     <Box>
-      <Image style={{ display: 'none' }} />
+      <Image style={{ display: "none" }} />
     </Box>
   </MessageWrapper>
 );
 
 const SelfMessageFile = ({ file }) => (
-  <MessageWrapper style={{ flexDirection: 'row-reverse' }}>
+  <MessageWrapper style={{ flexDirection: "row-reverse" }}>
     <Box p={0}>
       <SelfMessageBoxFile>
         <Flex align="center" pl={3} justify="space-around">
@@ -415,30 +458,36 @@ const SelfMessageFile = ({ file }) => (
       </SelfMessageBoxFile>
     </Box>
     <Box p={0}>
-      <Image style={{ display: 'none' }} />
+      <Image style={{ display: "none" }} />
     </Box>
   </MessageWrapper>
 );
 
 const Messages = ({ chat, userProfile }) => (
   <MessagesWrapper className="chat-content">
-    {chat.messages.map(({
-      _id, text, sender, file,
-    }) => (
+    {chat.messages.map(({ _id, text, sender, file }) => (
       <Choose>
         <When condition={userProfile._id === sender._id}>
-          {file && isImageUrl(file) ? <SelfMessageImage file={file} /> : ''}
-          {file && !isImageUrl(file) ? <SelfMessageFile file={file} /> : ''}
+          {file && isImageUrl(file) ? <SelfMessageImage file={file} /> : ""}
+          {file && !isImageUrl(file) ? <SelfMessageFile file={file} /> : ""}
           <SelfMessage text={text} />
         </When>
         <Otherwise>
-          {file && isImageUrl(file) ? <MessageImage file={file} photo={sender.photo} /> : ''}
-          {file && !isImageUrl(file) ? <fMessageFile file={file} photo={sender.photo} /> : ''}
+          {file && isImageUrl(file) ? (
+            <MessageImage file={file} photo={sender.photo} />
+          ) : (
+            ""
+          )}
+          {file && !isImageUrl(file) ? (
+            <fMessageFile file={file} photo={sender.photo} />
+          ) : (
+            ""
+          )}
           <Message text={text} photo={sender.photo} />
         </Otherwise>
       </Choose>
     ))}
-    <Box style={{ display: 'none' }} className="end-content-chat" />
+    <Box style={{ display: "none" }} className="end-content-chat" />
   </MessagesWrapper>
 );
 
@@ -452,20 +501,43 @@ class Chat extends Component {
   state = {
     user: null,
     chat: null,
+    ableToSendMessage: true
   };
 
   componentDidMount() {
     this.load();
-    const Chat = socketClient.service('app/chat');
+    const Chat = socketClient.service("app/chat");
 
-    const { userId } = JSON.parse(atob(localStorage['feathers-jwt'].split('.')[1]));
+    const { userId } = JSON.parse(
+      atob(localStorage["feathers-jwt"].split(".")[1])
+    );
 
-    Chat.on('patched', chat => {
+    this.props.getUser(userId).payload.promise.then(mySelf => {
+      // 5c4521205b87f70ec0fe83e9
+      this.props
+        .getLawyer({
+          query: {
+            lawyer: mySelf.lawyer,
+            $populate: "lawyer"
+          }
+        })
+        .payload.promise.then(result => {
+          const [user] = result.data;
+          mySelf.lawyer &&
+          (!user.lawyer.subscription || user.lawyer.subscription.amount == 0)
+            ? this.setState({
+                ableToSendMessage: false
+              })
+            : null;
+        });
+    });
+
+    Chat.on("patched", chat => {
       if (chat.members.includes(userId)) {
         this.load();
       }
     });
-    Chat.on('created', chat => {
+    Chat.on("created", chat => {
       if (chat.members.includes(userId)) {
         this.load();
       }
@@ -473,32 +545,32 @@ class Chat extends Component {
   }
 
   load = () => {
-    const {
-      getUser, id, getChat, chat, userProfile,
-    } = this.props;
+    const { getUser, id, getChat, chat, userProfile } = this.props;
 
     getUser(id).payload.promise.then(user => {
       this.setState({ user });
     });
 
-    const { userId } = JSON.parse(atob(localStorage['feathers-jwt'].split('.')[1]));
+    const { userId } = JSON.parse(
+      atob(localStorage["feathers-jwt"].split(".")[1])
+    );
 
     getChat({
       query: {
         $and: [
           {
             members: {
-              $in: [id],
-            },
+              $in: [id]
+            }
           },
           {
             members: {
-              $in: [userId],
-            },
-          },
+              $in: [userId]
+            }
+          }
         ],
-        $populate: 'messages.sender',
-      },
+        $populate: "messages.sender"
+      }
     }).payload.promise.then(result => {
       this.setState({ chat: result.data[0] });
       this.markAsRead();
@@ -524,9 +596,7 @@ class Chat extends Component {
     }
   };
 
-  render({
-    chat, create, id, formData, change, userProfile,
-  }) {
+  render({ chat, create, id, formData, change, userProfile }) {
     return (
       <Scene sync>
         <Nav align="center">
@@ -535,25 +605,32 @@ class Chat extends Component {
           </Box>
           <Box>
             <If condition={this.state.user}>
-              <UserInfo userName={this.state.user.name} photo={this.state.user.photo} />
+              <UserInfo
+                userName={this.state.user.name}
+                photo={this.state.user.photo}
+              />
             </If>
           </Box>
         </Nav>
         <Choose>
           <When condition={this.state.chat}>
-            <div style={{ maxWidth: 500, margin: 'auto' }}>
+            <div style={{ maxWidth: 500, margin: "auto" }}>
               <Messages chat={this.state.chat} userProfile={userProfile} />
             </div>
           </When>
         </Choose>
-
-        <FooterField
-          messages={this.state.chat ? this.state.chat.messages || [] : []}
-          create={create}
-          userId={id}
-          formData={formData}
-          change={change}
-        />
+        {this.state.ableToSendMessage ? (
+          <FooterField
+            messages={this.state.chat ? this.state.chat.messages || [] : []}
+            create={create}
+            userId={id}
+            formData={formData}
+            change={change}
+            ableToSendMessage={this.state.ableToSendMessage}
+          />
+        ) : (
+          <CantSendMessage />
+        )}
       </Scene>
     );
   }
