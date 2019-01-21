@@ -164,9 +164,8 @@ class Header extends Component {
                 });
               }}
               >
-                            Cadastrar
+                Cadastrar
               </SignUpButon>
-
               <Choose>
                 <When condition={window.cordova}>
                   <FacebookLoginButton
@@ -192,7 +191,7 @@ class Header extends Component {
                   >
                     <Flex align="center">
                       <img width="20" height="20" style={{ marginRight: 10 }} src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjUxMnB4IiBoZWlnaHQ9IjUxMnB4IiB2aWV3Qm94PSIwIDAgNjAuNzM0IDYwLjczMyIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNjAuNzM0IDYwLjczMzsiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8Zz4KCTxwYXRoIGQ9Ik01Ny4zNzgsMC4wMDFIMy4zNTJDMS41MDIsMC4wMDEsMCwxLjUsMCwzLjM1M3Y1NC4wMjZjMCwxLjg1MywxLjUwMiwzLjM1NCwzLjM1MiwzLjM1NGgyOS4wODZWMzcuMjE0aC03LjkxNHYtOS4xNjdoNy45MTQgICB2LTYuNzZjMC03Ljg0Myw0Ljc4OS0xMi4xMTYsMTEuNzg3LTEyLjExNmMzLjM1NSwwLDYuMjMyLDAuMjUxLDcuMDcxLDAuMzZ2OC4xOThsLTQuODU0LDAuMDAyYy0zLjgwNSwwLTQuNTM5LDEuODA5LTQuNTM5LDQuNDYyICAgdjUuODUxaDkuMDc4bC0xLjE4Nyw5LjE2NmgtNy44OTJ2MjMuNTJoMTUuNDc1YzEuODUyLDAsMy4zNTUtMS41MDMsMy4zNTUtMy4zNTFWMy4zNTFDNjAuNzMxLDEuNSw1OS4yMywwLjAwMSw1Ny4zNzgsMC4wMDF6IiBmaWxsPSIjRkZGRkZGIi8+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==" />
-                                        Cadastrar pelo Facebook
+                      Cadastrar pelo Facebook
                     </Flex>
                   </FacebookLoginButton>
                 </When>
@@ -227,7 +226,7 @@ class Header extends Component {
                       <FacebookLoginButton onClick={renderProps.onClick}>
                         <Flex align="center">
                             <img width="20" height="20" style={{ marginRight: 10 }} src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjUxMnB4IiBoZWlnaHQ9IjUxMnB4IiB2aWV3Qm94PSIwIDAgNjAuNzM0IDYwLjczMyIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNjAuNzM0IDYwLjczMzsiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8Zz4KCTxwYXRoIGQ9Ik01Ny4zNzgsMC4wMDFIMy4zNTJDMS41MDIsMC4wMDEsMCwxLjUsMCwzLjM1M3Y1NC4wMjZjMCwxLjg1MywxLjUwMiwzLjM1NCwzLjM1MiwzLjM1NGgyOS4wODZWMzcuMjE0aC03LjkxNHYtOS4xNjdoNy45MTQgICB2LTYuNzZjMC03Ljg0Myw0Ljc4OS0xMi4xMTYsMTEuNzg3LTEyLjExNmMzLjM1NSwwLDYuMjMyLDAuMjUxLDcuMDcxLDAuMzZ2OC4xOThsLTQuODU0LDAuMDAyYy0zLjgwNSwwLTQuNTM5LDEuODA5LTQuNTM5LDQuNDYyICAgdjUuODUxaDkuMDc4bC0xLjE4Nyw5LjE2NmgtNy44OTJ2MjMuNTJoMTUuNDc1YzEuODUyLDAsMy4zNTUtMS41MDMsMy4zNTUtMy4zNTFWMy4zNTFDNjAuNzMxLDEuNSw1OS4yMywwLjAwMSw1Ny4zNzgsMC4wMDF6IiBmaWxsPSIjRkZGRkZGIi8+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==" />
-                                                Login pelo Facebook
+                            Login pelo Facebook
                           </Flex>
                       </FacebookLoginButton>
                     )}
