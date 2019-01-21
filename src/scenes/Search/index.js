@@ -264,13 +264,14 @@ class Search extends Component {
     return _.orderBy(
       ResultData,
       [
+        "subscription.amount",
         "planConfig.maxAreas",
         "dist.calculated",
         "user.photo",
         "articles.length",
         "videos.length"
       ],
-      ["desc", "asc", "desc", "desc", "desc"]
+      ["asc", "desc", "asc", "desc", "desc", "desc"]
     );
   };
 
