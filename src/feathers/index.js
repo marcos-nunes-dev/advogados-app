@@ -16,8 +16,8 @@ import configureFeathersOfflineFirstRealtime from './offline-first';
 |--------------------------------------------------
 */
 
-const API_ENDPOINT = 'http://oi-advogado-api.sa-east-1.elasticbeanstalk.com';
-//const API_ENDPOINT = 'http://localhost:3030';
+//const API_ENDPOINT = 'http://oi-advogado-api.sa-east-1.elasticbeanstalk.com';
+const API_ENDPOINT = 'http://localhost:3030';
 
 export const socketClient = feathers()
   .configure(socketio(io(API_ENDPOINT), { timeout: 60000 }))
