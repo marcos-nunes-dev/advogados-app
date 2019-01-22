@@ -144,7 +144,7 @@ class Header extends Component {
           <Block>
             <Title>Informe seus dados para começar seu cadastro</Title>
             <div style={{ maxWidth: 500, margin: 'auto' }}>
-              <Form />
+              <Form test={"deds"}/>
               <SignUpButon onClick={() => {
                 ReactGA.event({ category: 'Navigation', action: 'Cadastrar' });
                 this.handleToggle(() => {
